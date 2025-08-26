@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code&display=swap');
+
+:root {
+	--bg-color: #1a1a1a;
+	--primary-color: #ff9900; 
+	--secondary-color: #b30000;
+	--tertiary-color: #aab8c4; 
+	--button-hover-color: #0d0d0d;
+	--error-color: #ff3333;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Cascadia Code', 'Courier New', Courier, monospace;
+	background-color: var(--bg-color);
+	color: var(--primary-color);
+	line-height: 1.6;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* --- Header & Nav --- */
+
+nav {
+	background: var(--bg-color);
+	border-bottom: 2px solid var(--primary-color);
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	gap: 20px;
+}
+
+nav ul li span {
+	color: var(--primary-color);
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+nav a, a {
+	color: var(--primary-color);
+	text-decoration: none;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+nav a:hover {
+	color: var(--secondary-color);
+}
+
+/* --- Main Content --- */
+
+main {
+	flex-grow: 1; 
+	width: 100%;
+	max-width: 800px;
+	margin: 20px auto;
+	background: #111;
+	padding: 20px;
+	border: 2px solid var(--primary-color);
+	box-shadow: 0 0 15px var(--primary-color);
+}
+
+h1, h2 {
+	color: var(--primary-color);
+	text-shadow: 0 0 5px var(--primary-color);
+	margin-bottom: 20px;
+}
+
+.thread-view h1,
+.thread-item h2 {
+	text-align: left;
+}
+
+/* --- Forms --- */
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+textarea {
+	padding: 10px;
+	background-color: var(--bg-color);
+	border: 1px solid var(--primary-color);
+	color: var(--primary-color);
+	font-family: 'Cascadia Code', 'Courier New', Courier, monospace;
+}
+
+button {
+	padding: 10px;
+	background-color: var(--primary-color);
+	border: 1px solid var(--primary-color);
+	cursor: pointer;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: var(--button-hover-color);
+	font-family: 'Cascadia Code', 'Courier New', Courier, monospace;
+}
+
+button:hover {
+	background-color: var(--button-hover-color);
+	color: var(--primary-color);
+	border: 1px solid var(--primary-color);
+}
+
+input:focus, 
+textarea:focus,
+button:focus {
+	outline: none;
+	border: 1px solid var(--tertiary-color);
+	box-shadow: 0 0 10px var(--tertiary-color);
+}
+
+input:invalid:not(:focus):not(:placeholder-shown) {
+	border-color: #ff3333;
+	box-shadow: 0 0 5px #ff3333;
+}
+
+input:focus:invalid {
+	animation: invalid-flash 1s infinite;
+}
+
+@keyframes invalid-flash {
+	0% { border-color: var(--secondary-color); }
+	50% { border-color: var(--tertiary-color); }
+	100% { border-color: var(--secondary-color); }
+}
+
+.error-message {
+	width: 100%;
+	color: var(--error-color);
+	border: 1px solid var(--error-color);
+	padding: 10px;
+	margin-bottom: 15px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* --- Forum Content --- */
+
+.user-greeting {
+	color: var(--tertiary-color);
+}
+
+.thread-item, .post-item, .thread-article, .reply-form {
+	background: #111;
+	border: 1px solid var(--primary-color);
+	box-shadow: 0 0 5px var(--primary-color);
+	padding: 15px;
+	margin-bottom: 10px;
+}
+
+.thread-item, .post-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.thread-title-and-content {
+	flex-grow: 1;
+}
+
+.thread-meta-compact {
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+	margin-left: 20px;
+	font-size: 0.9em;
+	align-self: flex-start;
+}
+
+.thread-date {
+	color: var(--tertiary-color);
+	white-space: nowrap;
+	font-weight: bold; 
+	text-transform: uppercase; 
+}
+
+.thread-author {
+	color: var(--tertiary-color);
+	white-space: nowrap;
+	font-weight: bold; 
+	text-transform: uppercase; 
+}
+
+.post-edit a, .thread-edit a {
+	color: var(--primary-color);
+}
+
+.post-delete a, .thread-delete a {
+	color: var(--secondary-color);
+}
+
+.thread-list, .post-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.thread-view {
+	display: flex;
+	flex-direction: column;
+}
+
+.placeholder-message {
+	text-align: center;
+	padding: 20px;
+	color: var(--primary-color);
+	font-style: italic;
+	opacity: 0.7;
+}
+
+/* --- Utilities & Footer --- */
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--primary-color);
+	border: 1px solid var(--bg-color);
+}
+
+footer {
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+	background-color: var(--bg-color);
+	border-top: 2px solid var(--primary-color);
+	color: var(--primary-color);
+}

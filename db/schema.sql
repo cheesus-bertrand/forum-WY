@@ -1,0 +1,34 @@
+DROP DATABASE IF EXISTS maisonneuve_forum;
+CREATE DATABASE maisonneuve_forum;
+USE maisonneuve_forum;
+
+CREATE TABLE User (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	username VARCHAR(255) NOT NULL UNIQUE,
+	password VARCHAR(255) NOT NULL,
+	date_of_birth DATE
+);
+
+CREATE TABLE Thread (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(255) NOT NULL,
+	article TEXT NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	user_id INT NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Post (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	article TEXT NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	user_id INT NOT NULL,
+	thread_id INT NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
+	FOREIGN KEY (thread_id) REFERENCES Thread(id) ON DELETE CASCADE
+);
+
+INSERT INTO User (name, username, password)
+VALUES ('Test User', 'testuser', '$2y$12$7Ud0npoY9DFuAg73sI7VH.ISTYG6q2o5Pl6aZvn8J.tinZ5pPXdYK');
+-- testuser password123
